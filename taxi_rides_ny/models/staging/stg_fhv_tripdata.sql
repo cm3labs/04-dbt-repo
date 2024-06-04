@@ -4,9 +4,9 @@
     )
 }}
 
-with fhv_data as 
+with fhv_data_partitoned_clustered as 
 (
-  select * from {{ source('staging','fhv_data') }}
+  select * from {{ source('staging','fhv_data_partitoned_clustered') }}
 ),
 
 renamed as (
@@ -21,13 +21,14 @@ renamed as (
         {{ dbt.safe_cast("sr_flag", api.Column.translate_type("integer")) }} as sr_flag,
         {{ dbt.safe_cast("affiliated_base_number", api.Column.translate_type("integer")) }} as affiliated_base_number
 
-    from fhv_data
+    from fhv_data_partitoned_clustered
+    where EXTRACT(YEAR FROM DATE(pickup_datetime)) = 2019
 
 )
 
 select * from renamed
 
--- dbt build --select <model_name> --vars '{'is_test_run': 'false'}'
+-- dbt build --select stg_fhv_tripdata --vars '{'is_test_run': 'false'}'
 {% if var('is_test_run', default=true) %}
 
   limit 100
