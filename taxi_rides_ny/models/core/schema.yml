@@ -127,3 +127,54 @@ models:
       - name: payment_type_description
         data_type: string
         description: ""
+  - name:  fact_fhv_trips
+    description: >
+      FHV taxi trips combined with zone info.
+    columns:
+      - name: tripid
+        data_type: string
+        description: "unique identifier conformed by the combination of 'dispatching_base_num' and 'pickup_datetime'"
+
+      - name: dispatching_base_num
+        data_type: int64
+        description: ""
+
+      - name: sr_flag
+        data_type: int64
+        description: ""
+
+      - name: affiliated_base_number
+        data_type: int64
+        description: ""
+
+      - name: pickup_borough
+        data_type: string
+        description: ""
+
+      - name: pickup_zone
+        data_type: string
+        description: ""
+
+      - name: pulocationid
+        data_type: int64
+        description: ""
+
+      - name: dolocationid
+        data_type: int64
+        description: ""
+
+      - name: dropoff_borough
+        data_type: string
+        description: ""
+
+      - name: dropoff_zone
+        data_type: string
+        description: ""
+
+      - name: pickup_datetime
+        data_type: timestamp
+        description: ""
+
+      - name: dropoff_datetime
+        data_type: timestamp
+        description: ""
