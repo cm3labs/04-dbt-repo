@@ -15,6 +15,7 @@ dim_zones as (
 )
 select 
     fhv_tripdata.tripid, 
+    fhv_tripdata.service_type,
     fhv_tripdata.dispatching_base_num,
     fhv_tripdata.sr_flag, 
     fhv_tripdata.affiliated_base_number, 
